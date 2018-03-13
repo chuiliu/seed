@@ -16,6 +16,11 @@ htmlFiles.forEach((file) => {
         const htmlWebpackPlugin = new HTMLWebpackPlugin({
             filename: `${filename}.html`,
             template: path.resolve(__dirname, `../src/template/${filename}.html`),
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
             chunks: [filename, 'vendor']
         });
 
