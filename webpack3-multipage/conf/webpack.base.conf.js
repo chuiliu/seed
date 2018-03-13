@@ -16,7 +16,7 @@ htmlFiles.forEach((file) => {
         const htmlWebpackPlugin = new HTMLWebpackPlugin({
             filename: `${filename}.html`,
             template: path.resolve(__dirname, `../src/template/${filename}.html`),
-            chunks: [filename, 'commons']
+            chunks: [filename, 'vendor']
         });
 
         HTMLWebpackPlugins.push(htmlWebpackPlugin);
