@@ -16,12 +16,14 @@ htmlFiles.forEach((file) => {
         const htmlWebpackPlugin = new HTMLWebpackPlugin({
             filename: `${filename}.html`,
             template: path.resolve(__dirname, `../src/template/${filename}.html`),
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-            },
+            inject: true,
             chunks: [filename, 'vendor']
+            // 压缩html
+            // minify: {
+            //     removeComments: true,
+            //     collapseWhitespace: true,
+            //     removeAttributeQuotes: true
+            // },
         });
 
         HTMLWebpackPlugins.push(htmlWebpackPlugin);
@@ -32,15 +34,19 @@ htmlFiles.forEach((file) => {
 module.exports = {
     entry: entries,
     output: {
-        path: path.resolve(__dirname, '../dist')
+        path: path.resolve(__dirname, '../dist'),
+        hashDigestLength: 8
     },
     devtool: 'cheap-module-source-map',
     module: {
         rules: [{
             test: /\.css$/,
             exclude: /node_modules/,
-            use: ExtractTextPlugin.extract({
+            // extract-text-webpack-plugin 不支持 HMR. 解决方法：https://github.com/shepherdwind/css-hot-loader
+            use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                 fallback: 'style-loader',
+                // publicPath是css中引入资源的路径，如图片和字体等
+                publicPath: '../',
                 use: [{
                     loader: 'css-loader',
                     options: {
@@ -49,10 +55,10 @@ module.exports = {
                 }, {
                     loader: 'postcss-loader'
                 }]
-            })
+            }))
         }, {
             test: /\.js$/,
-            exclude: /node_modules|lib/,
+            exclude: /node_modules/,
             enforce: 'pre',
             loader: 'eslint-loader',
             options: {
@@ -73,12 +79,16 @@ module.exports = {
             loader: 'url-loader',
             options: {
                 name: '[name].[ext]',
-                outputPath: 'img/',
                 limit: 10000,
+                outputPath: 'img/',
             }
         }, {
             test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-            loader: 'url-loader'
+            loader: 'url-loader',
+            options: {
+                limit: 10000,
+                outputPath: 'fonts/'
+            }
         }]
     },
     plugins: [

@@ -9,14 +9,17 @@ module.exports = merge(baseWebpackConfig, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: '../dist',
+        watchContentBase: true,
         historyApiFallback: true,
         inline: true,
         hot: true,
+        open: false,
+        // host: '0.0.0.0',
         port: 8080,
-        overlay: {
-            errors: true,
-            warnings: true
-        }
+        // overlay: {
+        //     warnings: true,
+        //     errors: true
+        // }
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

@@ -1,1 +1,1 @@
-console.log('util.js loaded!');
+console.log('util.js loaded.');
