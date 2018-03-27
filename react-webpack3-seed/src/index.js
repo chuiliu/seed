@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import { render } from 'react-dom';
 
 import router from './routes/index';
-// import Nav from './components/Nav';
+import { Provider } from 'react-redux';
+import store from './redux/stores';
 
-// ReactDom.render(<Nav />, document.getElementById('app'));
-ReactDom.render(router(), document.getElementById('app'));
+import AppRouter from './routes';
+
+render(<Provider store={store}><AppRouter /></Provider>, document.getElementById('app'));
