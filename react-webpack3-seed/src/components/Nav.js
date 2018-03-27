@@ -9,6 +9,7 @@ export default class Nav extends Component {
                     <li><Link to="/">index</Link></li>
                     <li><Link to="/about">about</Link></li>
                     <li><Link to="/counter">counter</Link></li>
+                    <li><Link to="/userinfo">userinfo</Link></li>
                 </ul>
             </div>
         )
