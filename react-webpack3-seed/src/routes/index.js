@@ -1,8 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 import Index from '../pages/index';
 import About from '../pages/about';
+
+// basename=""
 
 export default () => (
     <Router>

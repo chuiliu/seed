@@ -6,8 +6,8 @@ export default class Nav extends Component {
         return (
             <div>
                 <ul>
-                    <li><Link to="/">index page</Link></li>
-                    <li><Link to="/about">about page</Link></li>
+                    <li><Link to="/">index</Link></li>
+                    <li><Link to="/about">about</Link></li>
                 </ul>
             </div>
         )
