@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserInfo } from '../redux/actions/userInfo';
+import Nav from '../components/Nav';
 
 class UserInfo extends Component {
     render() {
         const { userInfo, isLoading, errMsg } = this.props.userInfo;
 
-        console.log(isLoading, userInfo);
-
         return (
             <div>
+                <Nav/>
+                <button onClick={() => this.props.getUserInfo()}>getUserInfo</button>
                 {
                     isLoading ? 'loading...' :
                         (
@@ -21,7 +22,6 @@ class UserInfo extends Component {
                                 </div>
                         )
                 }
-                <button onClick={() => this.props.getUserInfo()}>getUserInfo</button>
             </div>
         )
     }

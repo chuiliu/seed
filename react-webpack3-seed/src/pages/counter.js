@@ -3,10 +3,13 @@ import { increase, decrease, reset } from '../redux/actions/counter';
 
 import { connect } from 'react-redux';
 
+import Nav from '../components/Nav';
+
 class Counter extends Component {
     render() {
         return (
             <div>
+                <Nav/>
                 <div>counter: {this.props.counter.count}</div>
                 <button onClick={() => this.props.increase()}>increase</button>
                 <button onClick={() => this.props.decrease()}>decrease</button>

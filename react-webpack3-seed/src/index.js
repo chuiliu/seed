@@ -6,5 +6,6 @@ import { Provider } from 'react-redux';
 import store from './redux/stores';
 
 import AppRouter from './routes';
+import './app.css';
 
 render(<Provider store={store}><AppRouter /></Provider>, document.getElementById('app'));
