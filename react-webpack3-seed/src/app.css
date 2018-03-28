@@ -1,3 +1,7 @@
 a {
     color: #2c76d2;
+    cursor: pointer;
+}
+button {
+    cursor: pointer;
 }

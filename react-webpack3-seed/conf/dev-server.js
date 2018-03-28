@@ -11,7 +11,7 @@ var app = express();
 var compiler = webpack(webpackConfig);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
-    // publicPath: path.resolve(__dirname, '../dist'),
+    publicPath: webpackConfig.output.publicPath,
     quiet: true
 });
 
@@ -20,18 +20,14 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler, {
     heartbeat: 2000
 });
 
-// app.use(require('connect-history-api-fallback')());
 
 app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
-var indexPath = path.resolve(__dirname, '../dist/index.html');
 var staticPath = express.static(path.resolve(__dirname, '../dist'));
 
 app.use('/dist', staticPath);
-
-app.get('/', function(req, res) { res.sendFile(indexPath) });
 
 app.get('/api/*', function(req, res) {
     res.json({
@@ -43,6 +39,7 @@ app.get('/api/*', function(req, res) {
     });
 });
 
+app.use(require('connect-history-api-fallback')());
 
 var server = app.listen(port);
 console.log(`> Server listening at http:localhost:${port}`);

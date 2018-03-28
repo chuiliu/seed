@@ -1,14 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: [
-        'react-hot-loader/patch',
-        path.resolve(__dirname, '../src/index.js')
-    ],
+    // entry: [
+    //     'react-hot-loader/patch',
+    //     path.resolve(__dirname, '../src/index.js')
+    // ],
+    entry: {
+        app: [
+            'react-hot-loader/patch',
+            path.resolve(__dirname, '../src/index.js')
+        ],
+        vendor: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux']
+    },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'bundle.js'
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[chunkhash].js'
     },
     devtool: 'inline-source-map',
     module: {
@@ -46,6 +55,13 @@ module.exports = {
     //     },
     // },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: path.resolve(__dirname, '../src/index.html')
+        })
     ]
 };

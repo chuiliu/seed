@@ -12,7 +12,7 @@ class UserInfo extends Component {
                 <Nav/>
                 <button onClick={() => this.props.getUserInfo()}>getUserInfo</button>
                 {
-                    isLoading ? 'loading...' :
+                    isLoading ? (<p>loading...</p>) :
                         (
                             errMsg ? errMsg :
                                 <div>

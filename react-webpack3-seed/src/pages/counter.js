@@ -10,7 +10,7 @@ class Counter extends Component {
         return (
             <div>
                 <Nav/>
-                <div>counter: {this.props.counter.count}</div>
+                <p>counter: {this.props.counter.count}</p>
                 <button onClick={() => this.props.increase()}>increase</button>
                 <button onClick={() => this.props.decrease()}>decrease</button>
                 <button onClick={() => this.props.reset()}>reset</button>
