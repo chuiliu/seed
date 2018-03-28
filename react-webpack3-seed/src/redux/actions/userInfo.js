@@ -25,7 +25,7 @@ export function getUserInfo() {
     return function(dispatch) {
         dispatch(getUserInfoRequest());
 
-        return fetch('/api/userInfo.json').then(response => {
+        return fetch('/api/getUserInfo').then(response => {
             return response.json();
         }).then((json) => {
             if (json.result === 0) {

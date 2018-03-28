@@ -12,8 +12,16 @@ module.exports = merge(baseWebpackConfig, {
     },
     devtool: 'cheap-module-source-map',
     plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true
+        }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
         })
     ]
 });

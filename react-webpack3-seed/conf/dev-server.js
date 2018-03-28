@@ -4,6 +4,7 @@ var webpack = require('webpack');
 
 var webpackConfig = require('./webpack.dev.conf');
 var config = require('./config');
+var apis = require('../mock/api');
 
 var port = process.env.PORT || config.dev.port;
 
@@ -20,26 +21,26 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler, {
     heartbeat: 2000
 });
 
+compiler.plugin('compilation', function(compilation) {
+    compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
+        hotMiddleware.publish({ action: 'reload' });
+        cb();
+    });
+});
+
+Object.keys(apis).forEach(function(url) {
+    var f = apis[url];
+    app.use(url, f);
+});
+
+app.use(require('connect-history-api-fallback')({ index: 'index.html' }));
 
 app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
-var staticPath = express.static(path.resolve(__dirname, '../dist'));
-
-app.use('/dist', staticPath);
-
-app.get('/api/*', function(req, res) {
-    res.json({
-        result: 0,
-        data: {
-            id: 1000002,
-            name: 'my'
-        }
-    });
-});
-
-app.use(require('connect-history-api-fallback')());
+var staticPath = path.posix.join('/', 'static');
+app.use(staticPath, express.static('./static'));
 
 var server = app.listen(port);
 console.log(`> Server listening at http:localhost:${port}`);

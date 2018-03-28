@@ -40,7 +40,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.resolve(__dirname, '../src/index.html')
+            template: path.resolve(__dirname, '../src/index.html'),
+            inject: true
         })
     ]
 };
