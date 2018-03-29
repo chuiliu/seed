@@ -16,6 +16,12 @@ module.exports = merge(baseWebpackConfig, {
         filename: '[name].[hash].js',
         chunkFilename: '[name].[chunkhash].js'
     },
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader', 'postcss-loader']
+        }]
+    },
     devtool: 'inline-source-map',
     // devServer: {
     //     port: 8080,
@@ -32,6 +38,11 @@ module.exports = merge(baseWebpackConfig, {
     //     },
     // },
     plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: path.resolve(__dirname, '../src/index.html'),
+            inject: true
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor'

@@ -14,6 +14,7 @@ var compiler = webpack(webpackConfig);
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
     // publicPath必须和webpack配置一致
     publicPath: webpackConfig.output.publicPath,
+    // quiet: true，禁用所有控制台日志输出
     quiet: true
 });
 
@@ -40,6 +41,7 @@ app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
+// todo
 // var staticPath = path.posix.join('/', 'static');
 // app.use(staticPath, express.static('./static'));
 

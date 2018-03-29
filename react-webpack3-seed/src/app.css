@@ -5,3 +5,7 @@ a {
 button {
     cursor: pointer;
 }
+.bg-icon {
+    background: url('./img/icon-lg.jpg') no-repeat left top;
+    background-size: contain;
+}

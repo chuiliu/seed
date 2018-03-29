@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        // publicPath: ''  // todo
+        // publicPath: '/'  // todo
     },
     module: {
         rules: [{
@@ -22,26 +22,25 @@ module.exports = {
                 loader: 'babel-loader'
             }
         }, {
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader']
-        }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url-loader',
             options: {
                 name: '[name].[ext]',
                 limit: 10000,
-                // outputPath: 'img/',
+                outputPath: 'img/',
+            }
+        }, {
+            test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+            loader: 'url-loader',
+            options: {
+                limit: 10000,
+                outputPath: 'fonts/'
             }
         }]
     },
     plugins: [
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../'),
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.resolve(__dirname, '../src/index.html'),
-            inject: true
         })
     ]
 };
