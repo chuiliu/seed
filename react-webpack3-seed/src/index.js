@@ -8,4 +8,8 @@ import store from './redux/stores';
 import AppRouter from './routes';
 import './app.css';
 
+if (module.hot) {
+    module.hot.accept();
+}
+
 render(<Provider store={store}><AppRouter /></Provider>, document.getElementById('app'));

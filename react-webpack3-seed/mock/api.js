@@ -9,8 +9,8 @@ module.exports = {
         var result = Mock.mock({
             result: 0,
             data: {
-                id: 1000001,
-                name: 'chuiliu'
+                id: '@integer(1000000, 9999999)',
+                name: '@first @last'
             }
         });
         res.json(result);

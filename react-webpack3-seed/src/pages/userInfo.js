@@ -12,15 +12,15 @@ class UserInfo extends Component {
                 <Nav/>
                 <button onClick={() => this.props.getUserInfo()}>getUserInfo</button>
                 {
-                    isLoading ? (<p>loading...</p>) :
-                        (
-                            errMsg ? errMsg :
-                                <div>
-                                    <h3>userInfo</h3>
-                                    <p>id: {userInfo.id}</p>
-                                    <p>name: {userInfo.name}</p>
-                                </div>
-                        )
+                    isLoading ? <p>loading...</p> :
+                    (
+                        errMsg ? <p>{errMsg}</p> :
+                        <div>
+                            <h3>userInfo</h3>
+                            <p>id: {userInfo.id}</p>
+                            <p>name: {userInfo.name}</p>
+                        </div>
+                    )
                 }
             </div>
         )

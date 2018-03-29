@@ -12,6 +12,7 @@ var app = express();
 var compiler = webpack(webpackConfig);
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
+    // publicPath必须和webpack配置一致
     publicPath: webpackConfig.output.publicPath,
     quiet: true
 });
@@ -39,8 +40,8 @@ app.use(devMiddleware);
 
 app.use(hotMiddleware);
 
-var staticPath = path.posix.join('/', 'static');
-app.use(staticPath, express.static('./static'));
+// var staticPath = path.posix.join('/', 'static');
+// app.use(staticPath, express.static('./static'));
 
 var server = app.listen(port);
 console.log(`> Server listening at http:localhost:${port}`);

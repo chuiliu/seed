@@ -16,11 +16,7 @@ module.exports = merge(baseWebpackConfig, {
         hot: true,
         open: false,
         host: '0.0.0.0',
-        port: 8080,
-        // overlay: {
-        //     warnings: true,
-        //     errors: true
-        // }
+        port: 8080
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

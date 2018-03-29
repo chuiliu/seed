@@ -6,13 +6,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         app: [
-            'react-hot-loader/patch',
             path.resolve(__dirname, '../src/index.js')
         ],
         vendor: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
+        // publicPath: ''  // todo
     },
     module: {
         rules: [{

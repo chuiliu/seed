@@ -6,6 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const baseWebpackConfig = require('./webpack.base.conf');
 
 module.exports = merge(baseWebpackConfig, {
+    entry: {
+        app: [
+            'webpack-hot-middleware/client?noInfo=true&reload=true',
+            'react-hot-loader/patch',
+        ]
+    },
     output: {
         filename: '[name].[hash].js',
         chunkFilename: '[name].[chunkhash].js'

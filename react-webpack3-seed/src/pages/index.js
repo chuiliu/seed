@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Nav from '../components/Nav';
-import icon from '../img/img.png';
+import icon from '../img/icon.png';
 
 export default class Index extends Component {
     render() {
